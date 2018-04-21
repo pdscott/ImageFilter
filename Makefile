@@ -27,7 +27,7 @@ SRCS = fpga_filter.cpp filter.cpp
 SRCS_FILES = $(foreach F, $(SRCS), host/src/$(F))
 OBJS=$(SRCS:.c=.o)
 COMMON_FILES = ./common/src/AOCL_Utils.cpp
-CXX_FLAGS = -lpthread -lm -O3 -g
+CXX_FLAGS = -lm -O3 -g -pthread
 
 # arm cross compiler
 CROSS-COMPILE = arm-linux-gnueabihf-
