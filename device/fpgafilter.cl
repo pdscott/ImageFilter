@@ -31,7 +31,7 @@ __kernel void fpgafilter(__global Pixel *in,
 		}
 	}
 	out[row * w + col].alpha = (unsigned char) 0xFF;
-	out[row * w + col].red = (unsigned char) std::min(std::max(int(factor * red + bias), 0), 255);
-	out[row * w + col].green = (unsigned char) std::min(std::max(int(factor * green + bias), 0), 255);
-	out[row * w + col].blue = (unsigned char) std::min(std::max(int(factor * blue + bias), 0), 255);
+	out[row * w + col].red = (unsigned char) min(max(int(factor * red + bias), 0), 255);
+	out[row * w + col].green = (unsigned char) min(max(int(factor * green + bias), 0), 255);
+	out[row * w + col].blue = (unsigned char) min(max(int(factor * blue + bias), 0), 255);
 }
