@@ -11,7 +11,7 @@ __kernel void fpgafilter(__global Pixel *in,
 	                     __global Pixel *out,
 	                     __global double filter[5][5],
 	                     const int w, 
-	                     const int h ) { 
+	                     const int h) { 
 
 
 	int col = get_global_id(0); // x
@@ -21,6 +21,8 @@ __kernel void fpgafilter(__global Pixel *in,
 	double red = 0.0;
 	double green = 0.0;
 	double blue = 0.0;
+	double bias = 0.0;
+	double factor = 1.0;
 	for (unsigned int filterY = 0; filterY < 5; filterY++) {
 		for (unsigned int filterX = 0; filterX < 5; filterX++) {
 			unsigned int imageX = (col - 5 / 2 + filterX + w) % w;
