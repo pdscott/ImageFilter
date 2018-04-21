@@ -77,7 +77,7 @@ int main(int argc, char** argv) {
         break;
         case 3:  // FPGA
         gettimeofday(&time_start, NULL);
-        fpga_filter(src, dst, w, h, filtertype) 
+        fpga_filter(src, dst, width, height, filtertype);
         gettimeofday(&time_end, NULL);
         fprintf(stderr,"Filtering on FPGA: %ld\n",((time_end.tv_sec * 1000000 + time_end.tv_usec) - 
         	   (time_start.tv_sec * 1000000 + time_start.tv_usec)));
@@ -102,11 +102,11 @@ int main(int argc, char** argv) {
     fclose(out);
 }
 
-void* filter_t(void* param)  {
-	thread_data* tdata = (thread_data *) param;
-	filter(tdata->src, tdata->dst, tdata->w, tdata->h, tdata->filtertype, tdata->section);
-	pthread_exit(0);
-}
+// void* filter_t(void* param)  {
+// 	thread_data* tdata = (thread_data *) param;
+// 	filter(tdata->src, tdata->dst, tdata->w, tdata->h, tdata->filtertype, tdata->section);
+// 	pthread_exit(0);
+// }
 
 void filter(Pixel* src, Pixel* dst, int w, int h, int filtertype, int section) {
 	double filter[5][5];
