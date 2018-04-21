@@ -62,7 +62,12 @@ int main(int argc, char** argv) {
         gettimeofday(&time_start, NULL);
         src_bottom = &src_pixels[(height/2 - 2)* width];
         dst_bottom = &dst_pixels[(height/2 - 2) * width];
-        params = {src_bottom, dst_bottom, width, height/2 + 2, filtertype, 2};
+        params.src = src_bottom;
+        params.dst = dst_bottom;
+        params.w = width;
+        params.h = height/2 + 2;
+        params.filtertype = filtertype;
+        params.section = 2;
         pthread_create(&tid, NULL, filter_t, &params);
         filter(src_pixels, dst_pixels, width, height/2 + 2, filtertype, 1);
         pthread_join(tid, NULL);
