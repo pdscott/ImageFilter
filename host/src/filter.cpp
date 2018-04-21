@@ -4,7 +4,7 @@
 #include <math.h>
 #include <float.h>
 #include <algorithm>
-#include <pthread.h>
+// #include <pthread.h>
 #include <sys/time.h>
 #include "filter.h"
 
@@ -58,26 +58,26 @@ int main(int argc, char** argv) {
         	    time_end.tv_usec) - (time_start.tv_sec * 1000000 + time_start.tv_usec)));
         break;
         case 2:  //Dual Core
-        pthread_t tid;
+        // pthread_t tid;
         gettimeofday(&time_start, NULL);
-        src_bottom = &src_pixels[(height/2 - 2)* width];
-        dst_bottom = &dst_pixels[(height/2 - 2) * width];
-        params.src = src_bottom;
-        params.dst = dst_bottom;
-        params.w = width;
-        params.h = height/2 + 2;
-        params.filtertype = filtertype;
-        params.section = 2;
-        pthread_create(&tid, NULL, filter_t, &params);
-        filter(src_pixels, dst_pixels, width, height/2 + 2, filtertype, 1);
-        pthread_join(tid, NULL);
-        gettimeofday(&time_end, NULL);
+        // src_bottom = &src_pixels[(height/2 - 2)* width];
+        // dst_bottom = &dst_pixels[(height/2 - 2) * width];
+        // params.src = src_bottom;
+        // params.dst = dst_bottom;
+        // params.w = width;
+        // params.h = height/2 + 2;
+        // params.filtertype = filtertype;
+        // params.section = 2;
+        // pthread_create(&tid, NULL, filter_t, &params);
+        // filter(src_pixels, dst_pixels, width, height/2 + 2, filtertype, 1);
+        // pthread_join(tid, NULL);
+        // gettimeofday(&time_end, NULL);
         fprintf(stderr,"Filtering on multiple cores: %ld\n",((time_end.tv_sec * 1000000 + 
         	    time_end.tv_usec) - (time_start.tv_sec * 1000000 + time_start.tv_usec)));
         break;
         case 3:  // FPGA
         gettimeofday(&time_start, NULL);
-            //fpga_sort(numElements, output_data);
+        fpga_filter(src, dst, w, h, filtertype) 
         gettimeofday(&time_end, NULL);
         fprintf(stderr,"Filtering on FPGA: %ld\n",((time_end.tv_sec * 1000000 + time_end.tv_usec) - 
         	   (time_start.tv_sec * 1000000 + time_start.tv_usec)));

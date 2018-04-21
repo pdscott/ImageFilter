@@ -19,6 +19,7 @@ typedef struct thread_data {
 
 void filter(Pixel* src, Pixel* dst, int w, int h, int filtertype, int section);
 void* filter_t(void* param);
+int fpga_filter(char* src, char* dst, int w, int h, int filtertype);
 
 
 
