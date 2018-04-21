@@ -128,7 +128,7 @@ void cl_run(char* src, char* dst, int w, int h, int filtertype) {
     status = clEnqueueWriteBuffer(queue, buffer_in, CL_FALSE,
       0, w*h*sizeof(Pixel), src, 0, NULL, &write_event[0]);
     checkError(status, "Failed to transfer to buffer");
-    
+
     status = clEnqueueWriteBuffer(queue, buffer_f, CL_FALSE,
       0, 5*5*sizeof(double), filter, 0, NULL, &write_event[1]);
     checkError(status, "Failed to transfer to buffer");
@@ -148,7 +148,7 @@ void cl_run(char* src, char* dst, int w, int h, int filtertype) {
     // set work size and run kernel
 	const size_t global_work_size[2] = {w,h};
 
-	status = clEnqueueNDRangeKernel(queue, kernel, 1, NULL, &global_work_size, NULL, 1, write_event, &kernel_event);
+	status = clEnqueueNDRangeKernel(queue, kernel, 1, NULL, global_work_size, NULL, 1, write_event, &kernel_event);
     checkError(status, "Failed to launch kernel");
     clFinish(queue);
 
