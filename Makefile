@@ -27,7 +27,7 @@ SRCS = fpga_filter.cpp filter.cpp
 SRCS_FILES = $(foreach F, $(SRCS), host/src/$(F))
 OBJS=$(SRCS:.c=.o)
 COMMON_FILES = ./common/src/AOCL_Utils.cpp
-CXX_FLAGS = -lm -O3 -g -pthread
+CXX_FLAGS = -lm -O3 -g /opt/altera/14.0/embedded/ds-5/sw/gcc/bin/../arm-linux-gnueabihf/libc/lib/arm-linux-gnueabihf/libpthread.so.0 -pthread
 
 # arm cross compiler
 CROSS-COMPILE = arm-linux-gnueabihf-
