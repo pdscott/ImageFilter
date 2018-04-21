@@ -9,7 +9,7 @@ typedef struct pixel {
 
 __kernel void fpgafilter(__global Pixel *in, 
 	                     __global Pixel *out,
-	                     __global double *filter,
+	                     __global double filter[5][5],
 	                     const int w, 
 	                     const int h ) { 
 
