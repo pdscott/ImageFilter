@@ -24,7 +24,7 @@ endif
 
 # Libraries to use, objects to compile
 SRCS = fpga_filter.cpp filter.cpp
-SRCS_FILES = $(foreach F, $(SRCS), ./$(F))
+SRCS_FILES = $(foreach F, $(SRCS), host/src/$(F))
 OBJS=$(SRCS:.c=.o)
 COMMON_FILES = ./common/src/AOCL_Utils.cpp
 CXX_FLAGS = -pthread -lm -O3 -g
