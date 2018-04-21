@@ -24,11 +24,11 @@ cl_context context = NULL;
 cl_command_queue queue = NULL;
 cl_program program = NULL;
 cl_kernel kernel = NULL;
-cl_mem buffer_a, buffer_b;
+cl_mem buffer_in, buffer_out, buffer_f;
 
 
 bool init_opencl();
-void cl_run(int num_of_elements, float *data);
+void cl_run(char* src, char* dst, int w, int h, int filtertype);
 void cleanup();
 
 int fpga_filter(char* src, char* dst, int w, int h, int filtertype) {
@@ -87,7 +87,7 @@ void cl_run(char* src, char* dst, int w, int h, int filtertype) {
     cl_int status;
     cl_event kernel_event;
     cl_event finish_event;
-    cl_event write_event[1];
+    cl_event write_event[2];
 
 	filterWidth = 5;
 	filterHeight = 5;
@@ -122,9 +122,15 @@ void cl_run(char* src, char* dst, int w, int h, int filtertype) {
     NULL, &status);
     buffer_out = clCreateBuffer(context, CL_MEM_READ_WRITE, w*h*sizeof(Pixel),
     NULL, &status);
+    buffer_f = clCreateBuffer(context, CL_MEM_READ_WRITE, 5*5*sizeof(double),
+    NULL, &status);
 
     status = clEnqueueWriteBuffer(queue, buffer_in, CL_FALSE,
       0, w*h*sizeof(Pixel), src, 0, NULL, &write_event[0]);
+    checkError(status, "Failed to transfer to buffer");
+    
+    status = clEnqueueWriteBuffer(queue, buffer_f, CL_FALSE,
+      0, 5*5*sizeof(double), filter, 0, NULL, &write_event[1]);
     checkError(status, "Failed to transfer to buffer");
 
     // set kernel args
@@ -132,7 +138,7 @@ void cl_run(char* src, char* dst, int w, int h, int filtertype) {
     checkError(status, "Failed to set argument %d", 0);
     status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&buffer_out);
     checkError(status, "Failed to set argument %d", 0);
-    status = clSetKernelArg(kernel, 2, sizeof(filter), (void*)&filter);
+    status = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void*)&filter);
     checkError(status, "Failed to set argument %d", 0);
     status = clSetKernelArg(kernel, 3, sizeof(w), (void*)&w);
     checkError(status, "Failed to set argument %d", 0);
