@@ -25,10 +25,9 @@ __kernel void fpgafilter(__global Pixel *in,
 		for (unsigned int filterX = 0; filterX < 5; filterX++) {
 			unsigned int imageX = (col - 5 / 2 + filterX + w) % w;
 			unsigned int imageY = (row - 5 / 2 + filterY + h) % h;
-			Pixel *pixel = &in[imageY * w + imageX];
-			red += pixel->red * filter[filterY][filterX];
-			green += pixel->green * filter[filterY][filterX];
-			blue += pixel->blue * filter[filterY][filterX];
+			red += in[imageY * w + imageX].red * filter[filterY][filterX];
+			green += in[imageY * w + imageX].green * filter[filterY][filterX];
+			blue += in[imageY * w + imageX].blue * filter[filterY][filterX];
 		}
 	}
 	out[row * w + col].alpha = (unsigned char) 0xFF;
