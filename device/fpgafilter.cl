@@ -16,7 +16,7 @@ __kernel void fpgafilter(__global Pixel* restrict in,
 	int col = get_global_id(0); // x
 	int row = get_global_id(1); // y
 
-	double filter[5][5] = {{0,0,0,0,0},{0,0,0,0,0},{0,0,1,0,0},{0,0,0,0,0},{0,0,0,0,0}};
+	//double filter[5][5] = {{0,0,0,0,0},{0,0,0,0,0},{0,0,1,0,0},{0,0,0,0,0},{0,0,0,0,0}};
 	double red = 0.0;
 	double green = 0.0;
 	double blue = 0.0;
@@ -26,9 +26,9 @@ __kernel void fpgafilter(__global Pixel* restrict in,
 		for (unsigned int filterX = 0; filterX < 5; filterX++) {
 			unsigned int imageX = (col - 5 / 2 + filterX + w) % w;
 			unsigned int imageY = (row - 5 / 2 + filterY + h) % h;
-			red += in[imageY * w + imageX].red * filter[filterY][filterX];
-			green += in[imageY * w + imageX].green * filter[filterY][filterX];
-			blue += in[imageY * w + imageX].blue * filter[filterY][filterX];
+			red += in[imageY * w + imageX].red;// * filter[filterY][filterX];
+			green += in[imageY * w + imageX].green;// * filter[filterY][filterX];
+			blue += in[imageY * w + imageX].blue;// * filter[filterY][filterX];
 		}
 	}
 	out[row * w + col].alpha = (unsigned char) 0xFF;
