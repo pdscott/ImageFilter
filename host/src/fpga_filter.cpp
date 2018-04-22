@@ -87,62 +87,62 @@ void cl_run(char* src, char* dst, int w, int h, int filtertype) {
     cl_int status;
     cl_event kernel_event;
     cl_event finish_event;
-    cl_event write_event[2];
+    cl_event write_event[1];
 
-	filterWidth = 5;
-	filterHeight = 5;
-	double idfilter[5][5] = {{0,0,0,0,0},{0,0,0,0,0},{0,0,1,0,0},{0,0,0,0,0},{0,0,0,0,0}};
-	double edgefilter[5][5] = {{-1,0,0,0,0}, {0,-2,0,0,0},{0,0,6,0,0},{0,0,0,-2,0},{0,0,0,0,-1}};
-    double gaussfilter[5][5] = {{1,4,6,4,1},{4,16,24,16,4},{6,24,36,24,6},{4,16,24,16,4},{1,4,6,4,1}};
-    double embossfilter[5][5] = {{-1,-1,-1,-1,0},{-1,-1,-1,0,1},{-1,-1,0,1,1},{-1,0,1,1,1},{0,1,1,1,1}};
+	// filterWidth = 5;
+	// filterHeight = 5;
+	// double idfilter[5][5] = {{0,0,0,0,0},{0,0,0,0,0},{0,0,1,0,0},{0,0,0,0,0},{0,0,0,0,0}};
+	// double edgefilter[5][5] = {{-1,0,0,0,0}, {0,-2,0,0,0},{0,0,6,0,0},{0,0,0,-2,0},{0,0,0,0,-1}};
+ //    double gaussfilter[5][5] = {{1,4,6,4,1},{4,16,24,16,4},{6,24,36,24,6},{4,16,24,16,4},{1,4,6,4,1}};
+ //    double embossfilter[5][5] = {{-1,-1,-1,-1,0},{-1,-1,-1,0,1},{-1,-1,0,1,1},{-1,0,1,1,1},{0,1,1,1,1}};
 
-    if (filtertype == 1) {
-        memcpy(filter, idfilter, sizeof(filter));
-        factor = 1.0;
-        bias = 0.0;
-    } else if (filtertype == 2) {
-    	memcpy(filter, edgefilter, sizeof(filter));
-    	factor = 1.0;
-    	bias = 0.0;
-    } else if (filtertype == 3) {
-    	memcpy(filter, gaussfilter, sizeof(filter));
-    	factor = 1.0 / 256.0;
-    	bias = 0.0;
-    } else if (filtertype == 4) {
-    	memcpy(filter, embossfilter, sizeof(filter));
-    	factor = 1.0;
-    	bias = 128;	
-    } else {
-    	memcpy(filter, idfilter, sizeof(filter));
-		factor = 1.0;
-		bias = 0.0;
-    }
+ //    if (filtertype == 1) {
+ //        memcpy(filter, idfilter, sizeof(filter));
+ //        factor = 1.0;
+ //        bias = 0.0;
+ //    } else if (filtertype == 2) {
+ //    	memcpy(filter, edgefilter, sizeof(filter));
+ //    	factor = 1.0;
+ //    	bias = 0.0;
+ //    } else if (filtertype == 3) {
+ //    	memcpy(filter, gaussfilter, sizeof(filter));
+ //    	factor = 1.0 / 256.0;
+ //    	bias = 0.0;
+ //    } else if (filtertype == 4) {
+ //    	memcpy(filter, embossfilter, sizeof(filter));
+ //    	factor = 1.0;
+ //    	bias = 128;	
+ //    } else {
+ //    	memcpy(filter, idfilter, sizeof(filter));
+	// 	factor = 1.0;
+	// 	bias = 0.0;
+ //    }
 
     buffer_in = clCreateBuffer(context, CL_MEM_READ_WRITE, w*h*sizeof(Pixel),
     NULL, &status);
     buffer_out = clCreateBuffer(context, CL_MEM_READ_WRITE, w*h*sizeof(Pixel),
     NULL, &status);
-    buffer_f = clCreateBuffer(context, CL_MEM_READ_WRITE, 5*5*sizeof(double),
-    NULL, &status);
+    // buffer_f = clCreateBuffer(context, CL_MEM_READ_WRITE, 5*5*sizeof(double),
+    // NULL, &status);
 
     status = clEnqueueWriteBuffer(queue, buffer_in, CL_FALSE,
       0, w*h*sizeof(Pixel), src, 0, NULL, &write_event[0]);
     checkError(status, "Failed to transfer to buffer");
 
-    status = clEnqueueWriteBuffer(queue, buffer_f, CL_FALSE,
-      0, 5*5*sizeof(double), filter, 0, NULL, &write_event[1]);
-    checkError(status, "Failed to transfer to buffer");
+    // status = clEnqueueWriteBuffer(queue, buffer_f, CL_FALSE,
+    //   0, 5*5*sizeof(double), filter, 0, NULL, &write_event[1]);
+    // checkError(status, "Failed to transfer to buffer");
 
     // set kernel args
     status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void*)&buffer_in);
     checkError(status, "Failed to set argument %d", 0);
     status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&buffer_out);
     checkError(status, "Failed to set argument %d", 0);
-    status = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void*)&filter);
+    // status = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void*)&filter);
+    // checkError(status, "Failed to set argument %d", 0);
+    status = clSetKernelArg(kernel, 2, sizeof(w), (void*)&w);
     checkError(status, "Failed to set argument %d", 0);
-    status = clSetKernelArg(kernel, 3, sizeof(w), (void*)&w);
-    checkError(status, "Failed to set argument %d", 0);
-    status = clSetKernelArg(kernel, 4, sizeof(cl_mem), (void*)&h);
+    status = clSetKernelArg(kernel, 3, sizeof(cl_mem), (void*)&h);
     checkError(status, "Failed to set argument %d", 0);
 
     // set work size and run kernel
