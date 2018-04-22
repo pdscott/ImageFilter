@@ -63,7 +63,7 @@ bool init_opencl() {
     context = clCreateContext(NULL, num_devices, device, NULL, NULL, &status);
     checkError(status, "Failed to create context");
 
-    std::string binary_file = getBoardBinaryFile("fpgasort", device[0]);
+    std::string binary_file = getBoardBinaryFile("fpgafilter", device[0]);
     printf("Using AOCX: %s\n", binary_file.c_str());
     program = createProgramFromBinary(context, binary_file.c_str(), device, num_devices);
 
