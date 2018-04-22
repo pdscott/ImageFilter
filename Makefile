@@ -12,7 +12,7 @@
 
 
 # Creating a static library
-TARGET = mysort 
+TARGET = fpgafilter 
 
 # Where is the Altera SDK for OpenCL software?
 ifeq ($(wildcard $(ALTERAOCLSDKROOT)),)
