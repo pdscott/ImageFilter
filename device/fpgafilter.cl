@@ -30,8 +30,8 @@ __kernel void fpgafilter(__global unsigned int* restrict in,
 		}
 	}
     unsigned int newAlpha = 0xFF000000;
-    unsigned int newRed = std::min(std::max((int)(factor * red + bias), 0), 255) << 16;
-    unsigned int newGreen = std::min(std::max((int)(factor * green + bias), 0), 255) << 8;
-    unsigned int newBlue = std::min(std::max((int)(factor * blue + bias), 0), 255);
+    unsigned int newRed = min(max((int)(factor * red + bias), 0), 255) << 16;
+    unsigned int newGreen = min(max((int)(factor * green + bias), 0), 255) << 8;
+    unsigned int newBlue = min(max((int)(factor * blue + bias), 0), 255);
 	out[row * w + col] =  newAlpha + newRed + newGreen + newBlue;
 }
