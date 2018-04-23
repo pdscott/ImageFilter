@@ -108,7 +108,7 @@ void* filter_t(void* param)  {
 	pthread_exit(0);
 }
 
-void filter(Pixel* src, Pixel* dst, int w, int h, int filtertype, int section) {
+void filter(int* src, int* dst, int w, int h, int filtertype, int section) {
 	double filter[5][5];
 	double factor, bias;
 	int filterWidth, filterHeight;
