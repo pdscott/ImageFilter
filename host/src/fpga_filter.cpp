@@ -118,15 +118,15 @@ void cl_run(char* src, char* dst, int w, int h, int filtertype) {
 	// 	bias = 0.0;
  //    }
 
-    buffer_in = clCreateBuffer(context, CL_MEM_READ_WRITE, w*h*sizeof(Pixel),
+    buffer_in = clCreateBuffer(context, CL_MEM_READ_WRITE, w*h*sizeof(int),
     NULL, &status);
-    buffer_out = clCreateBuffer(context, CL_MEM_READ_WRITE, w*h*sizeof(Pixel),
+    buffer_out = clCreateBuffer(context, CL_MEM_READ_WRITE, w*h*sizeof(int),
     NULL, &status);
     // buffer_f = clCreateBuffer(context, CL_MEM_READ_WRITE, 5*5*sizeof(double),
     // NULL, &status);
 
     status = clEnqueueWriteBuffer(queue, buffer_in, CL_FALSE,
-      0, w*h*sizeof(Pixel), src, 0, NULL, &write_event[0]);
+      0, w*h*sizeof(int), src, 0, NULL, &write_event[0]);
     checkError(status, "Failed to transfer to buffer");
 
     // status = clEnqueueWriteBuffer(queue, buffer_f, CL_FALSE,
@@ -153,7 +153,7 @@ void cl_run(char* src, char* dst, int w, int h, int filtertype) {
     clFinish(queue);
 
     // copy the result back to dst
-    status = clEnqueueReadBuffer(queue, buffer_out, CL_TRUE, 0, w*h*sizeof(Pixel), dst, 0, NULL, NULL);
+    status = clEnqueueReadBuffer(queue, buffer_out, CL_TRUE, 0, w*h*sizeof(int), dst, 0, NULL, NULL);
         checkError(status, "Failed to transfer data back to host");
 
     clReleaseEvent(write_event[0]);
