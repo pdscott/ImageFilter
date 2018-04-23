@@ -11,7 +11,7 @@
 int main(int argc, char** argv) {
 	FILE *in, *out;
 	char *buffer, *header, *src, *dst;
-	Pixel *src_bottom, *dst_bottom;
+	int *src_bottom, *dst_bottom;
 	thread_data params;
 	int hsize, isize, width, height;
 	int mode, filtertype;
@@ -47,8 +47,8 @@ int main(int argc, char** argv) {
 	fread(header, sizeof(char), hsize, in);
 	fseek (in, hsize, SEEK_SET);
 	fread(src, sizeof(char), isize, in);
-	Pixel *src_pixels = (Pixel *) src;
-	Pixel *dst_pixels = (Pixel *) dst;
+	int *src_pixels = (int *) src;
+	int *dst_pixels = (int *) dst;
 	switch(mode) {
         case 1: //Single Core
         gettimeofday(&time_start, NULL);
