@@ -21,9 +21,9 @@ __kernel void fpgafilter(__global unsigned int* restrict in,
 		for (unsigned int filterX = 0; filterX < 5; filterX++) {
 			unsigned int imageX = (col - 5 / 2 + filterX + w) % w;
 			unsigned int imageY = (row - 5 / 2 + filterY + h) % h;
-            unsigned int redPixel = (src[imageY * w + imageX] &   0x00FF0000) >> 16;
-            unsigned int greenPixel = (src[imageY * w + imageX] & 0x0000FF00) >> 8;
-            unsigned int bluePixel =  src[imageY * w + imageX] &  0x000000FF;
+            unsigned int redPixel = (in[imageY * w + imageX] &   0x00FF0000) >> 16;
+            unsigned int greenPixel = (in[imageY * w + imageX] & 0x0000FF00) >> 8;
+            unsigned int bluePixel =  in[imageY * w + imageX] &  0x000000FF;
 			red += redPixel * filter[filterY][filterX];
 			green += greenPixel * filter[filterY][filterX];
 			blue += bluePixel * filter[filterY][filterX];
