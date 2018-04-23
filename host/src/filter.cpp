@@ -4,7 +4,7 @@
 #include <math.h>
 #include <float.h>
 #include <algorithm>
-// #include <pthread.h>
+#include <pthread.h>
 #include <sys/time.h>
 #include "filter.h"
 
@@ -58,20 +58,20 @@ int main(int argc, char** argv) {
         	    time_end.tv_usec) - (time_start.tv_sec * 1000000 + time_start.tv_usec)));
         break;
         case 2:  //Dual Core
-        // pthread_t tid;
+        pthread_t tid;
         gettimeofday(&time_start, NULL);
-        // src_bottom = &src_pixels[(height/2 - 2)* width];
-        // dst_bottom = &dst_pixels[(height/2 - 2) * width];
-        // params.src = src_bottom;
-        // params.dst = dst_bottom;
-        // params.w = width;
-        // params.h = height/2 + 2;
-        // params.filtertype = filtertype;
-        // params.section = 2;
-        // pthread_create(&tid, NULL, filter_t, &params);
-        // filter(src_pixels, dst_pixels, width, height/2 + 2, filtertype, 1);
-        // pthread_join(tid, NULL);
-        // gettimeofday(&time_end, NULL);
+        src_bottom = &src_pixels[(height/2 - 2)* width];
+        dst_bottom = &dst_pixels[(height/2 - 2) * width];
+        params.src = src_bottom;
+        params.dst = dst_bottom;
+        params.w = width;
+        params.h = height/2 + 2;
+        params.filtertype = filtertype;
+        params.section = 2;
+        pthread_create(&tid, NULL, filter_t, &params);
+        filter(src_pixels, dst_pixels, width, height/2 + 2, filtertype, 1);
+        pthread_join(tid, NULL);
+        gettimeofday(&time_end, NULL);
         fprintf(stderr,"Filtering on multiple cores: %ld\n",((time_end.tv_sec * 1000000 + 
         	    time_end.tv_usec) - (time_start.tv_sec * 1000000 + time_start.tv_usec)));
         break;
@@ -102,11 +102,11 @@ int main(int argc, char** argv) {
     fclose(out);
 }
 
-// void* filter_t(void* param)  {
-// 	thread_data* tdata = (thread_data *) param;
-// 	filter(tdata->src, tdata->dst, tdata->w, tdata->h, tdata->filtertype, tdata->section);
-// 	pthread_exit(0);
-// }
+void* filter_t(void* param)  {
+	thread_data* tdata = (thread_data *) param;
+	filter(tdata->src, tdata->dst, tdata->w, tdata->h, tdata->filtertype, tdata->section);
+	pthread_exit(0);
+}
 
 void filter(Pixel* src, Pixel* dst, int w, int h, int filtertype, int section) {
 	double filter[5][5];
@@ -154,25 +154,29 @@ void filter(Pixel* src, Pixel* dst, int w, int h, int filtertype, int section) {
     	endrow = h;
     }
 
-	for (unsigned int x = 0; x < w; x++) {
-		for (unsigned int y = startrow; y < endrow; y++) {
-			double red = 0.0;
-			double green = 0.0;
-			double blue = 0.0;
-			for (unsigned int filterY = 0; filterY < filterHeight; filterY++) {
-				for (unsigned int filterX = 0; filterX < filterWidth; filterX++) {
-					unsigned int imageX = (x - filterWidth / 2 + filterX + w) % w;
-					unsigned int imageY = (y - filterHeight / 2 + filterY + h) % h;
-					Pixel *pixel = &src[imageY * w + imageX];
-					red += pixel->red * filter[filterY][filterX];
-					green += pixel->green * filter[filterY][filterX];
-					blue += pixel->blue * filter[filterY][filterX];
-				}
-			}
-			dst[y * w + x].alpha = (unsigned char) 0xFF;
-			dst[y * w + x].red = (unsigned char) std::min(std::max(int(factor * red + bias), 0), 255);
-			dst[y * w + x].green = (unsigned char) std::min(std::max(int(factor * green + bias), 0), 255);
-			dst[y * w + x].blue = (unsigned char) std::min(std::max(int(factor * blue + bias), 0), 255);
-		}
+    for (unsigned int x = 0; x < w; x++) {
+        for (unsigned int y = startrow; y < endrow; y++) {
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
+            for (unsigned int filterY = 0; filterY < filterHeight; filterY++) {
+                for (unsigned int filterX = 0; filterX < filterWidth; filterX++) {
+                    unsigned int imageX = (x - 5 / 2 + filterX + w) % w;
+                    unsigned int imageY = (y - 5 / 2 + filterY + h) % h;
+                    unsigned int redPixel = (src[imageY * w + imageX] &   0x00FF0000) >> 16;
+                    unsigned int greenPixel = (src[imageY * w + imageX] & 0x0000FF00) >> 8;
+                    unsigned int bluePixel =  src[imageY * w + imageX] &  0x000000FF;
+                    red += redPixel * filter[filterY][filterX];
+                    green += greenPixel * filter[filterY][filterX];
+                    blue += bluePixel * filter[filterY][filterX];
+                }
+            }
+                                  //0xAARRGGBB
+            unsigned int newAlpha = 0xFF000000;
+            unsigned int newRed = min(max((int)(factor * red + bias), 0), 255) << 16;
+            unsigned int newGreen = min(max((int)(factor * green + bias), 0), 255) << 8;
+            unsigned int newBlue = min(max((int)(factor * blue + bias), 0), 255);
+            dst[y * w + x] =  newAlpha + newRed + newGreen + newBlue;
+        }
     }
 }
