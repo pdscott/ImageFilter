@@ -2,8 +2,8 @@
 #define filter_h
 
 typedef struct thread_data {
-	Pixel* src;
-	Pixel* dst; 
+	int* src;
+	int* dst; 
 	int w; 
 	int h;
 	int filtertype;
