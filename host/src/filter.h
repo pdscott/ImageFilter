@@ -3,7 +3,7 @@
 
 typedef struct thread_data {
 	int* src;
-	int* dst; 
+	int* dst;  
 	int w; 
 	int h;
 	int filtertype;

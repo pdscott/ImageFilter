@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  22 APR 2018 22:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  24 APR 2018 10:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -278,7 +278,29 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 \Gin@req@height=\dimen119
 \Gin@req@width=\dimen120
 )
-(./project.aux
+(/usr/local/texlive/2017/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count115
+\c@ALG@rem=\count116
+\c@ALG@nested=\count117
+\ALG@tlm=\skip47
+\ALG@thistlm=\skip48
+\c@ALG@Lnr=\count118
+\c@ALG@blocknr=\count119
+\c@ALG@storecount=\count120
+\c@ALG@tmpcounter=\count121
+\ALG@tmplength=\skip49
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (./project.aux
 
 LaTeX Warning: Label `overflow' multiply defined.
 
@@ -286,7 +308,7 @@ LaTeX Warning: Label `overflow' multiply defined.
 LaTeX Warning: Label `overflow' multiply defined.
 
 
-LaTeX Warning: Label `table1' multiply defined.
+LaTeX Warning: Label `overflow' multiply defined.
 
 )
 \openout1 = `project.aux'.
@@ -313,16 +335,16 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count115
+\scratchcounter=\count122
 \scratchdimen=\dimen121
 \scratchbox=\box31
-\nofMPsegments=\count116
-\nofMParguments=\count117
+\nofMPsegments=\count123
+\nofMParguments=\count124
 \everyMPshowfont=\toks20
-\MPscratchCnt=\count118
+\MPscratchCnt=\count125
 \MPscratchDim=\dimen122
-\MPnumerator=\count119
-\makeMPintoPDFobject=\count120
+\MPnumerator=\count126
+\makeMPintoPDFobject=\count127
 \everyMPtoPDFconversion=\toks21
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -349,7 +371,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count121
+\c@section@level=\count128
 )
 LaTeX Info: Redefining \ref on input line 60.
 LaTeX Info: Redefining \pageref on input line 60.
@@ -381,164 +403,144 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--80
+<filters.png, id=52, 571.13374pt x 567.11874pt>
+File: filters.png Graphic file (type png)
+ <use filters.png>
+Package pdftex.def Info: filters.png used on input line 79.
+(pdftex.def)             Requested size: 341.43306pt x 339.0364pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--86
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--80
+Underfull \hbox (badness 10000) in paragraph at lines 71--86
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--80
+Underfull \hbox (badness 10000) in paragraph at lines 71--86
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--80
+Underfull \hbox (badness 10000) in paragraph at lines 71--86
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--86
 
  []
 
 [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+[2 <./filters.png>] <matrix.png, id=68, 886.31125pt x 677.53125pt>
+File: matrix.png Graphic file (type png)
 
-LaTeX Warning: File `winsDistributions.png' not found on input line 86.
+<use matrix.png>
+Package pdftex.def Info: matrix.png used on input line 89.
+(pdftex.def)             Requested size: 341.43306pt x 261.01057pt.
 
-
-! Package pdftex.def Error: File `winsDistributions.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.86 ...aphics[width=120mm]{winsDistributions.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[2]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 99.
- (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 99.
- [3]
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
+Underfull \hbox (badness 10000) in paragraph at lines 94--96
 
  []
 
-[4]
 
-LaTeX Warning: File `WARcalcVpub.png' not found on input line 185.
+Underfull \hbox (badness 10000) in paragraph at lines 116--119
 
-
-! Package pdftex.def Error: File `WARcalcVpub.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.185 ...udegraphics[width=140mm]{WARcalcVpub.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \hbox (0.85359pt too wide) in paragraph at lines 185--186
- [][] 
  []
 
 
-LaTeX Warning: File `modelResults.png' not found on input line 196.
-
-
-! Package pdftex.def Error: File `modelResults.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.196 ...degraphics[width=140mm]{modelResults.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \hbox (0.85359pt too wide) in paragraph at lines 196--197
- [][] 
+Underfull \hbox (badness 1107) in paragraph at lines 116--119
+\OT1/ptm/m/n/10 An im-por-tant con-se-quence of this pixel in-de-pen-dence is t
+hat this al-go-rithm can be par-al-
  []
 
-[5] [6]
+[3 <./matrix.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 153--156
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--178
+
+ []
+
+[4] <boundary.png, id=85, 756.8275pt x 375.4025pt>
+File: boundary.png Graphic file (type png)
+ <use boundary.png>
+Package pdftex.def Info: boundary.png used on input line 181.
+(pdftex.def)             Requested size: 341.43306pt x 169.35918pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+ []
+
+<buffer.png, id=86, 948.54375pt x 692.5875pt>
+File: buffer.png Graphic file (type png)
+ <use buffer.png>
+Package pdftex.def Info: buffer.png used on input line 190.
+(pdftex.def)             Requested size: 341.43306pt x 249.2996pt.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7]
-Underfull \hbox (badness 1033) in paragraph at lines 220--221
-[]\OT1/ptm/m/n/9 [2] Unan-i-mous A.I. Cor-po-rate Press Re-lease (2016) A.I. Ma
-kes Yet An-other Re-mark-able Pre-dic-tion,
+ [5 <./boundary.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 240--243
+
  []
 
 
-Underfull \hbox (badness 2894) in paragraph at lines 228--229
-[]\OT1/ptm/m/n/9 [6] Baumer, B.S. & Jensen, S.T. & Matthews, G. J. (2015) open-
-WAR: An Open Source Sys-
+Underfull \hbox (badness 10000) in paragraph at lines 240--243
+
+ []
+
+[6 <./buffer.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 283--288
+
  []
 
 
-Underfull \hbox (badness 2735) in paragraph at lines 228--229
-\OT1/ptm/m/n/9 tem for Eval-u-at-ing Over-all Player Per-for-mance in Ma-jor Le
-ague Base-ball. (arXiv:1312.7158v3),
+Underfull \hbox (badness 10000) in paragraph at lines 283--288
+
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 340.
-[8] [9] [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 340.
+[7]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 301.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 301.
  (./project.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 340.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 340.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 301.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 301.
 Package rerunfilecheck Info: File `project.out' has not changed.
-(rerunfilecheck)             Checksum: A156F1EE284B8D3A4D36EA797067E94D;706.
+(rerunfilecheck)             Checksum: 97A5B95FBEFBCC34D9228EE90C1D226A;700.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 340.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 301.
  ) 
 Here is how much of TeX's memory you used:
- 6648 strings out of 492995
- 94789 string characters out of 6132704
- 201090 words of memory out of 5000000
- 10088 multiletter control sequences out of 15000+600000
- 16481 words of font info for 39 fonts, out of 8000000 for 9000
+ 7182 strings out of 492995
+ 102432 string characters out of 6132704
+ 202256 words of memory out of 5000000
+ 10609 multiletter control sequences out of 15000+600000
+ 17191 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,15n,39p,859b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,9n,39p,1174b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
-live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
-ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
-/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
-17/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
-7/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/
-texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2
-017/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2017/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fon
-ts/type1/urw/times/utmr8a.pfb>
-Output written on project.pdf (10 pages, 137348 bytes).
+exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
+ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive
+/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2017/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2017/tex
+mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fo
+nts/type1/urw/times/utmr8a.pfb>
+Output written on project.pdf (8 pages, 3698238 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 128 compressed objects within 2 object streams
- 28 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 148 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
+ 32 named destinations out of 1000 (max. 500000)
+ 117 words of extra memory for PDF output out of 10000 (max. 10000000)
 
